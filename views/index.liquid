@@ -1,1 +1,9 @@
-<h1>Gotta catch 'em all!</h1>
+{% render 'partials/head.liquid' %}
+
+<main>
+
+{% for pokemon in pokemon.results %}
+  <p>{{ pokemon.name }}</p>
+{% endfor %}
+
+</main>
