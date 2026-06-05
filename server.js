@@ -37,7 +37,10 @@ app.get('/pokemon/:id', async function (request, response) {
     const pokemonId = request.params.id
         // Haal de specifieke data op voor deze Pokémon
         const detailData = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+        const speciesData = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`)
+
         const pokemonDetail = await detailData.json()
+        const speciesDetail = await speciesData.json()
 
         const pokemonInfo = {
             id: pokemonDetail.id,
@@ -45,10 +48,10 @@ app.get('/pokemon/:id', async function (request, response) {
             height: pokemonDetail.height / 10, // API geeft dit in decimeters, /10 maakt het meters
             weight: pokemonDetail.weight / 10, // API geeft dit in hectograms, /10 maakt het kg
             image: pokemonDetail.sprites.other['official-artwork'].front_default,
-            types: pokemonDetail.types.map(t => t.type.name) // maakt een lijst van types
+            types: pokemonDetail.types.map(t => t.type.name), // maakt een lijst van types
+            color: speciesDetail.color.name
         }
 
-        // Render de nieuwe detail.liquid pagina en geef de info mee
         response.render('pokemon.liquid', {
             pokemon: pokemonInfo
         })

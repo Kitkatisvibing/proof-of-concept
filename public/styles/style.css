@@ -1,5 +1,17 @@
 :root{
     --pokedex-color:#E60033;
+
+/*pokemon colors*/
+    --pokemon-red:#E60033;
+    --pokemon-blue:#0095D9;
+    --pokemon-yellow:#FFD900;
+    --pokemon-green:#3EB370;
+    --pokemon-black:#2B2B2B;
+    --pokemon-brown:#965042;
+    --pokemon-purple:#884898;
+    --pokemon-gray:#7D7D7D;
+    --pokemon-white:#F3F3F3;
+    --pokemon-pink:#FF9EC7;
 }
 
 body{
@@ -9,6 +21,7 @@ body{
 
 header{
     background-color: var(--pokedex-color);
+    filter: drop-shadow(0px 11px 7px #000000);
 }
 
 .pokedex{

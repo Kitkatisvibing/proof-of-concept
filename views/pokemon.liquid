@@ -1,6 +1,6 @@
 {% render 'partials/head.liquid'%}
-</header>
 <a href="/">Back</a>
+</header>
 
 <main>       
     <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}">
@@ -11,6 +11,7 @@
     <ul>
         <li>Height: {{ pokemon.height }} m</li>
         <li>Weight: {{ pokemon.weight }} kg</li>
+        <li>Color: {{ pokemon.color }}</li>
     </ul>
 
     <h3>Type(s):</h3>
@@ -21,5 +22,67 @@
         {% endfor %}
     </ul>
 </main>
+
+{% if pokemon.color == "red" %}
+    <style>
+        main {
+            background-color: var(--pokemon-red);
+        }
+    </style>
+{% elsif pokemon.color == "blue" %}
+    <style>
+        main {
+            background-color: var(--pokemon-blue);
+        }
+    </style>
+{% elsif pokemon.color == "yellow" %}
+    <style>
+        main {
+            background-color: var(--pokemon-yellow);
+        }
+    </style>
+{% elsif pokemon.color == "green" %}
+    <style>
+        main {
+            background-color: var(--pokemon-green);
+        }
+    </style>
+{% elsif pokemon.color == "black" %}
+    <style>
+        main {
+            background-color: var(--pokemon-black);
+        }
+    </style>
+{% elsif pokemon.color == "brown" %}
+    <style>
+        main {
+            background-color: var(--pokemon-brown);
+        }
+    </style>
+{% elsif pokemon.color == "purple" %}
+    <style>
+        main {
+            background-color: var(--pokemon-purple);
+        }
+    </style>
+{% elsif pokemon.color == "gray" %}
+    <style>
+        main {
+            background-color: var(--pokemon-gray);
+        }
+    </style>
+{% elsif pokemon.color == "white" %}
+    <style>
+        main {
+            background-color: var(--pokemon-white);
+        }
+    </style>
+{% elsif pokemon.color == "pink" %}
+    <style>
+        main {
+            background-color: var(--pokemon-pink);
+        }
+    </style>
+{% endif %}
 
 {% render 'partials/foot.liquid' %}
