@@ -1,8 +1,8 @@
 {% render 'partials/head.liquid' %}
 <main>
-  <ul>
+  <ul class="pokedex">
     {% for item in pokemon %}
-      <li>
+      <li class="pokecard">
         <img src="{{ item.image }}" alt="{{ item.name }}" width="100" height="100" loading="lazy">
         <a href="/pokemon/{{ item.id }}"><p>{{ item.name }}</p></a>
       </li>

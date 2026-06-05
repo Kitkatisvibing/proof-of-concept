@@ -1,0 +1,21 @@
+body{
+    text-align: center;
+}
+
+.pokedex{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    justify-content: center;
+    li{
+        display: inline-block;
+        text-align: center;
+        border: 1px solid;
+        width: 30%;
+        img{
+            width: 100px;
+            height: 100px;
+        }
+    }
+}
