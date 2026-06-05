@@ -3,9 +3,11 @@
 <a href="/">Pokedex</a>
 
 <main>
-        <h1>#{{ pokemon.id }} - {{ pokemon.name | capitalize }}</h1>
         
         <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}">
+        <h1>{{ pokemon.name | capitalize }}</h1>
+
+        <p>Pokedex number {{ pokemon.id }}</p>
 
         <ul>
             <li>Height: {{ pokemon.height }} m</li>
