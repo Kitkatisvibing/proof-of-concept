@@ -17,8 +17,10 @@ const getDataJSON = await getData.json()
 app.get ('/', async function (request, response) {
 
 // deze const haalt de images uit de API
-const pokemon    = getDataJSON.results.map(function(item, index) {
-    const id = index + 1 
+const pokemon = getDataJSON.results.map(function(item) {
+        // Splits de URL op '/' en pak het een-na-laatste element (het ID)
+        const urlParts = item.url.split('/')
+        const id = urlParts[urlParts.length - 2]
     return {
         name: item.name,
         id: id,
@@ -30,10 +32,31 @@ const pokemon    = getDataJSON.results.map(function(item, index) {
     })
 })
 
+app.get('/pokemon/:id', async function (request, response) {
+    // Haal het ID uit de URL (bijv. /pokemon/25 -> id is 25)
+    const pokemonId = request.params.id
+        // Haal de specifieke data op voor deze Pokémon
+        const detailData = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+        const pokemonDetail = await detailData.json()
+
+        // We structureren de data netjes voor je Liquid template
+        const pokemonInfo = {
+            id: pokemonDetail.id,
+            name: pokemonDetail.name,
+            height: pokemonDetail.height / 10, // API geeft dit in decimeters, /10 maakt het meters
+            weight: pokemonDetail.weight / 10, // API geeft dit in hectograms, /10 maakt het kg
+            image: pokemonDetail.sprites.other['official-artwork'].front_default,
+            types: pokemonDetail.types.map(t => t.type.name) // Dit maakt een handig lijstje van types
+        }
+
+        // Render de nieuwe detail.liquid pagina en geef de info mee
+        response.render('pokemon.liquid', {
+            pokemon: pokemonInfo
+        })
+})
+
 app.use(function (request, response) {
-    response.status(404).render('error.liquid', {
-        errorMessage: "Pagina niet gevonden (404)."
-    })
+    response.status(404).render('error.liquid', {})
 })
 
 // Localhost setup

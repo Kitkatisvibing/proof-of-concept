@@ -1,0 +1,23 @@
+{% render 'partials/head.liquid' %}
+
+<a href="/">Pokedex</a>
+
+<main>
+        <h1>#{{ pokemon.id }} - {{ pokemon.name | capitalize }}</h1>
+        
+        <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}">
+
+        <ul>
+            <li>Height: {{ pokemon.height }} m</li>
+            <li>Weight: {{ pokemon.weight }} kg</li>
+        </ul>
+
+        <h3>Type(s):</h3>
+        <ul>
+            {% for type in pokemon.types %}
+                <li>{{ type }}</li>
+            {% endfor %}
+        </ul>
+    </main>
+
+{% render 'partials/foot.liquid' %}
