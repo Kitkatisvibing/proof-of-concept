@@ -28,7 +28,11 @@ const pokemon = getDataJSON.results.map(function(item) {
     }
 })
     response.render('index.liquid', {
-    pokemon: pokemon
+    pokemon: pokemon,
+    pokeball: {
+      name: 'Pokéball',
+      image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png'
+      }
     })
 })
 
