@@ -1,9 +1,12 @@
 {% render 'partials/head.liquid' %}
-
 <main>
-
-{% for pokemon in pokemon.results %}
-  <p>{{ pokemon.name }}</p>
-{% endfor %}
-
+  <ul>
+    {% for item in pokemon %}
+      <li>
+        <img src="{{ item.image }}" alt="{{ item.name }}" width="100" height="100" >
+        <p>{{ item.name }}</p>
+      </li>
+    {% endfor %}
+  </ul>
 </main>
+{% render 'partials/foot.liquid' %}

@@ -9,20 +9,27 @@ const engine = new Liquid()
 app.engine('liquid', engine.express())
 app.set('views', './views')
 
+const getData = await fetch ('https://pokeapi.co/api/v2/pokemon?limit=1025')
+
+const getDataJSON = await getData.json()
 
 // Hier beginnen de views
-app.get('/', async function (request, response) {
+app.get ('/', async function (request, response) {
 
-  const type = request.query.pokemon
-
-  const pokemonResponse = await fetch('https://pokeapi.co/api/v2/pokemon')
-
-  const pokemonResponseJSON = await pokemonResponse.json()
-
-  response.render('index.liquid', {
-    pokemon: pokemonResponseJSON,
-  })
+// deze const haalt de images uit de API
+const pokemon    = getDataJSON.results.map(function(item, index) {
+    const id = index + 1 
+    return {
+        name: item.name,
+        id: id,
+        image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+    }
 })
+    response.render('index.liquid', {
+    pokemon: pokemon
+    })
+})
+
 // Localhost setup
 
 app.set('port', process.env.PORT || 8000)
