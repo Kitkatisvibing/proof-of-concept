@@ -1,25 +1,25 @@
-{% render 'partials/head.liquid' %}
+{% render 'partials/head.liquid'%}
+</header>
+<a href="/">Back</a>
 
-<a href="/">Pokedex</a>
+<main>       
+    <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}">
+    <h1>{{ pokemon.name | capitalize }}</h1>
 
-<main>
-        
-        <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}">
-        <h1>{{ pokemon.name | capitalize }}</h1>
+    <p>Pokedex number {{ pokemon.id }}</p>
 
-        <p>Pokedex number {{ pokemon.id }}</p>
+    <ul>
+        <li>Height: {{ pokemon.height }} m</li>
+        <li>Weight: {{ pokemon.weight }} kg</li>
+    </ul>
 
-        <ul>
-            <li>Height: {{ pokemon.height }} m</li>
-            <li>Weight: {{ pokemon.weight }} kg</li>
-        </ul>
+    <h3>Type(s):</h3>
 
-        <h3>Type(s):</h3>
-        <ul>
-            {% for type in pokemon.types %}
-                <li>{{ type }}</li>
-            {% endfor %}
-        </ul>
-    </main>
+    <ul>
+        {% for type in pokemon.types %}
+            <li>{{ type }}</li>
+        {% endfor %}
+    </ul>
+</main>
 
 {% render 'partials/foot.liquid' %}

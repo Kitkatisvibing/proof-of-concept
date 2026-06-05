@@ -1,5 +1,14 @@
+:root{
+    --pokedex-color:#E60033;
+}
+
 body{
     text-align: center;
+    margin: 0;
+}
+
+header{
+    background-color: var(--pokedex-color);
 }
 
 .pokedex{
