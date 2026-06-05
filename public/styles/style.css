@@ -1,3 +1,14 @@
+/*fonts*/
+    @font-face {
+        font-family: 'PokemonGB';
+        src: url('../fonts/PokemonGB.ttf') format('truetype');
+    }
+
+    @font-face{
+        font-family: 'PocketMonk';
+        src: url('../fonts/PocketMonk.otf') format('opentype');
+    }
+
 :root{
     --pokedex-color:#E60033;
 
@@ -12,13 +23,21 @@
     --pokemon-gray:#7D7D7D;
     --pokemon-white:#F3F3F3;
     --pokemon-pink:#FF9EC7;
+
+/*pokemon fonts*/
+    --pokemon-font: 'PokemonGB', 'Verdana', sans-serif;
+    --title-font: 'PocketMonk', 'Times New Roman', serif;
 }
 
 body{
     text-align: center;
     margin: 0;
+    font-family: var(--pokemon-font);
 }
 
+h1{
+    font-family: var(--title-font);
+}
 header{
     background-color: var(--pokedex-color);
     filter: drop-shadow(0px 11px 7px #000000);
