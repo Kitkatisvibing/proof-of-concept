@@ -39,14 +39,13 @@ app.get('/pokemon/:id', async function (request, response) {
         const detailData = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
         const pokemonDetail = await detailData.json()
 
-        // We structureren de data netjes voor je Liquid template
         const pokemonInfo = {
             id: pokemonDetail.id,
             name: pokemonDetail.name,
             height: pokemonDetail.height / 10, // API geeft dit in decimeters, /10 maakt het meters
             weight: pokemonDetail.weight / 10, // API geeft dit in hectograms, /10 maakt het kg
             image: pokemonDetail.sprites.other['official-artwork'].front_default,
-            types: pokemonDetail.types.map(t => t.type.name) // Dit maakt een handig lijstje van types
+            types: pokemonDetail.types.map(t => t.type.name) // maakt een lijst van types
         }
 
         // Render de nieuwe detail.liquid pagina en geef de info mee
