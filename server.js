@@ -30,12 +30,18 @@ const pokemon    = getDataJSON.results.map(function(item, index) {
     })
 })
 
+app.use(function (request, response) {
+    response.status(404).render('error.liquid', {
+        errorMessage: "Pagina niet gevonden (404)."
+    })
+})
+
 // Localhost setup
 
 app.set('port', process.env.PORT || 8000)
 
 app.listen(app.get('port'), function () {
   // Toon een bericht in de console
-  console.log(`http://localhost:${app.get('port')}/ Pokemon\n\nGotta catch 'em all!`)
+  console.log(`http://localhost:${app.get('port')}`)
 })
 
