@@ -18,7 +18,9 @@
 
     <ul class="types">
         {% for type in pokemon.types %}
-            <li class="{{ type | downcase }}">{{ type }}</li>
+            <li class="{{ type | downcase }}">
+                <a href="/?type={{ type | downcase }}">{{ type }}</a>
+            </li>
         {% endfor %}
     </ul>
 </main>
