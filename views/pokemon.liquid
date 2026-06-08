@@ -3,7 +3,7 @@
 </header>
 
 <main>       
-    <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}">
+    <img class="pokeimage" src="{{ pokemon.image }}" alt="{{ pokemon.name }}">
     <h1>{{ pokemon.name | capitalize }}</h1>
 
     <p>Pokedex number {{ pokemon.id }}</p>
@@ -51,6 +51,9 @@
     <style>
         body {
             background-color: var(--pokemon-black);
+        }
+        main{
+        color: white;
         }
     </style>
 {% elsif pokemon.color == "brown" %}
