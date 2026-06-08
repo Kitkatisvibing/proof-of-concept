@@ -1,5 +1,11 @@
 {% render 'partials/head.liquid' %}
-
+    <form method="GET" action="/">
+      <input 
+        type="search" 
+        placeholder="Search Pokémon" 
+        name="search" 
+        value="{{ search }}">
+    </form>
 </header>
 <main>
   <ul class="pokedex">
@@ -12,4 +18,5 @@
     {% endfor %}
   </ul>
 </main>
+
 {% render 'partials/foot.liquid' %}

@@ -16,17 +16,22 @@ const getDataJSON = await getData.json()
 // Hier beginnen de views
 app.get ('/', async function (request, response) {
 
-// deze const haalt de images uit de API
-const pokemon = getDataJSON.results.map(function(item) {
-        // Splits de URL op '/' en pak het een-na-laatste element (het ID)
+const searchQuery = (request.query.search || '').toLowerCase().trim();
+
+    let pokemon = getDataJSON.results.map(function(item) {
         const urlParts = item.url.split('/')
         const id = urlParts[urlParts.length - 2]
-    return {
-        name: item.name,
-        id: id,
-        image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+        return {
+            name: item.name,
+            id: id,
+            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+        }
+    })
+
+    if (searchQuery) {
+        pokemon = pokemon.filter(p => p.name.toLowerCase().includes(searchQuery))
     }
-})
+
     response.render('index.liquid', {
     pokemon: pokemon,
     pokeball: {
