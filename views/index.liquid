@@ -13,6 +13,29 @@
         <option value="hisui" {% if regionQuery == 'hisui' %}selected{% endif %}>Hisui (Gen 8.5)</option>
         <option value="paldea" {% if regionQuery == 'paldea' %}selected{% endif %}>Paldea (Gen 9)</option>
       </select>
+
+      <select name="type" onchange="this.form.submit()">
+        <option value="">All Types</option>
+        <option value="normal" {% if typeQuery == 'normal' %}selected{% endif %}>Normal</option>
+        <option value="fire" {% if typeQuery == 'fire' %}selected{% endif %}>Fire</option>
+        <option value="water" {% if typeQuery == 'water' %}selected{% endif %}>Water</option>
+        <option value="grass" {% if typeQuery == 'grass' %}selected{% endif %}>Grass</option>
+        <option value="electric" {% if typeQuery == 'electric' %}selected{% endif %}>Electric</option>
+        <option value="ice" {% if typeQuery == 'ice' %}selected{% endif %}>Ice</option>
+        <option value="fighting" {% if typeQuery == 'fighting' %}selected{% endif %}>Fighting</option>
+        <option value="poison" {% if typeQuery == 'poison' %}selected{% endif %}>Poison</option>
+        <option value="ground" {% if typeQuery == 'ground' %}selected{% endif %}>Ground</option>
+        <option value="flying" {% if typeQuery == 'flying' %}selected{% endif %}>Flying</option>
+        <option value="psychic" {% if typeQuery == 'psychic' %}selected{% endif %}>Psychic</option>
+        <option value="bug" {% if typeQuery == 'bug' %}selected{% endif %}>Bug</option>
+        <option value="rock" {% if typeQuery == 'rock' %}selected{% endif %}>Rock</option>
+        <option value="ghost" {% if typeQuery == 'ghost' %}selected{% endif %}>Ghost</option>
+        <option value="dragon" {% if typeQuery == 'dragon' %}selected{% endif %}>Dragon</option>
+        <option value="dark" {% if typeQuery == 'dark' %}selected{% endif %}>Dark</option>
+        <option value="steel" {% if typeQuery == 'steel' %}selected{% endif %}>Steel</option>
+        <option value="fairy" {% if typeQuery == 'fairy' %}selected{% endif %}>Fairy</option>
+      </select>
+
       <input 
         type="search" 
         placeholder="Search Pokémon" 

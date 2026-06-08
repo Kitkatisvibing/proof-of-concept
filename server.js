@@ -31,6 +31,7 @@ app.get ('/', async function (request, response) {
 
 const searchQuery = (request.query.search || '').toLowerCase().trim();
 const regionQuery = (request.query.region || '').toLowerCase().trim();
+const typeQuery = (request.query.type || '').toLowerCase().trim();
 
     let pokemon = getDataJSON.results.map(function(item) {
         const urlParts = item.url.split('/')
@@ -51,10 +52,32 @@ const regionQuery = (request.query.region || '').toLowerCase().trim();
             pokemon = pokemon.filter(p => p.id >= min && p.id <= max);
         }
 
+    if (typeQuery) {
+            try {
+                const typeResponse = await fetch(`https://pokeapi.co/api/v2/type/${typeQuery}`);
+                if (typeResponse.ok) {
+                    const typeData = await typeResponse.ok ? await typeResponse.json() : null;
+                    if (typeData) {
+                        // Extract the IDs of all Pokémon that have this type
+                        const allowedIds = typeData.pokemon.map(p => {
+                            const parts = p.pokemon.url.split('/');
+                            return parseInt(parts[parts.length - 2], 10);
+                        });
+                        
+                        // Filter our main list to only include these IDs
+                        pokemon = pokemon.filter(p => allowedIds.includes(p.id));
+                    }
+                }
+            } catch (error) {
+                console.error("Error fetching type data:", error);
+            }
+        }
+
     response.render('index.liquid', {
     pokemon: pokemon,
     searchQuery: searchQuery,
     regionQuery: regionQuery,
+    typeQuery: typeQuery,
     pokeball: {
       name: 'Pokéball',
       image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png'
