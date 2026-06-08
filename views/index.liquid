@@ -1,11 +1,24 @@
 {% render 'partials/head.liquid' %}
-    <form method="GET" action="/">
+  <form method="GET" action="/">
+    <select name="region" onchange="this.form.submit()">
+        <option value="">All Regions</option>
+        <option value="kanto" {% if regionQuery == 'kanto' %}selected{% endif %}>Kanto (Gen 1)</option>
+        <option value="johto" {% if regionQuery == 'johto' %}selected{% endif %}>Johto (Gen 2)</option>
+        <option value="hoenn" {% if regionQuery == 'hoenn' %}selected{% endif %}>Hoenn (Gen 3)</option>
+        <option value="sinnoh" {% if regionQuery == 'sinnoh' %}selected{% endif %}>Sinnoh (Gen 4)</option>
+        <option value="unova" {% if regionQuery == 'unova' %}selected{% endif %}>Unova (Gen 5)</option>
+        <option value="kalos" {% if regionQuery == 'kalos' %}selected{% endif %}>Kalos (Gen 6)</option>
+        <option value="alola" {% if regionQuery == 'alola' %}selected{% endif %}>Alola (Gen 7)</option>
+        <option value="galar" {% if regionQuery == 'galar' %}selected{% endif %}>Galar (Gen 8)</option>
+        <option value="hisui" {% if regionQuery == 'hisui' %}selected{% endif %}>Hisui (Gen 8.5)</option>
+        <option value="paldea" {% if regionQuery == 'paldea' %}selected{% endif %}>Paldea (Gen 9)</option>
+      </select>
       <input 
         type="search" 
         placeholder="Search Pokémon" 
         name="search" 
-        value="{{ search }}">
-    </form>
+        value="{{ searchQuery }}">
+  </form>
 </header>
 <main>
   <ul class="pokedex">

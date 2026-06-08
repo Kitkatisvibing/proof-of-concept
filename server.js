@@ -13,14 +13,28 @@ const getData = await fetch ('https://pokeapi.co/api/v2/pokemon?limit=1025')
 
 const getDataJSON = await getData.json()
 
+const regions = {
+  kanto: { min: 1, max: 151 },
+  johto: { min: 152, max: 251 },
+  hoenn: { min: 252, max: 386 },
+  sinnoh: { min: 387, max: 493 },
+  unova: { min: 494, max: 649 },
+  kalos: { min: 650, max: 721 },
+  alola: { min: 722, max: 809 },
+  galar: { min: 810, max: 898 },
+  hisui: { min: 899, max: 905 },
+  paldea: { min: 906, max: 1025 }
+};
+
 // Hier beginnen de views
 app.get ('/', async function (request, response) {
 
 const searchQuery = (request.query.search || '').toLowerCase().trim();
+const regionQuery = (request.query.region || '').toLowerCase().trim();
 
     let pokemon = getDataJSON.results.map(function(item) {
         const urlParts = item.url.split('/')
-        const id = urlParts[urlParts.length - 2]
+        const id = parseInt(urlParts[urlParts.length - 2], 10);
         return {
             name: item.name,
             id: id,
@@ -32,8 +46,15 @@ const searchQuery = (request.query.search || '').toLowerCase().trim();
         pokemon = pokemon.filter(p => p.name.toLowerCase().includes(searchQuery))
     }
 
+    if (regionQuery && regions[regionQuery]) {
+            const { min, max } = regions[regionQuery];
+            pokemon = pokemon.filter(p => p.id >= min && p.id <= max);
+        }
+
     response.render('index.liquid', {
     pokemon: pokemon,
+    searchQuery: searchQuery,
+    regionQuery: regionQuery,
     pokeball: {
       name: 'Pokéball',
       image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png'
