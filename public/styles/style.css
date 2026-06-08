@@ -24,6 +24,26 @@
     --pokemon-white:#F3F3F3;
     --pokemon-pink:#FF9EC7;
 
+/*pokemon type colors*/
+    --type-normal:#AAB09F;
+    --type-fire:#EA7A3C;
+    --type-water:#539AE2;
+    --type-electric:#E5C531;
+    --type-grass:#71C558;
+    --type-psychic:#E5709B;
+    --type-fighting:#CB5F48;
+    --type-poison:#B468B7;
+    --type-ground:#CC9F4F;
+    --type-flying:#7DA6DE;
+    --type-dragon:#6A7BAF;
+    --type-bug:#94BC4A;
+    --type-rock:#B2A061;
+    --type-ghost:#846AB6;
+    --type-ice:#70CBD4;
+    --type-steel:#89A1B0;
+    --type-dark:#736C75;
+    --type-fairy:#E397D1;
+
 /*pokemon fonts*/
     --pokemon-font: 'PokemonGB', 'Verdana', sans-serif;
     --title-font: 'PocketMonk', 'Times New Roman', serif;
@@ -35,13 +55,82 @@ body{
     font-family: var(--pokemon-font);
 }
 
-h1{
+h1, h2, h3, h4, h5, h6{
     font-family: var(--title-font);
 }
 
 header{
     background-color: var(--pokedex-color);
     filter: drop-shadow(0px 11px 7px #000000);
+}
+
+.types{
+    list-style: none;
+    display: flex;
+    gap: 0.5em;
+    justify-content: center;
+    li{
+        padding: 0.5em;
+        color: white;
+        border-radius: 5px;
+        border: 1px solid black;
+        filter: drop-shadow(0px 2px 3px #000000);
+    }
+    .normal{
+        background-color: var(--type-normal);
+    }
+    .fire{
+        background-color: var(--type-fire);
+    }
+    .water{
+        background-color: var(--type-water);
+    }
+    .electric{
+        background-color: var(--type-electric);
+    }
+    .grass{
+        background-color: var(--type-grass);
+    }
+    .psychic{
+        background-color: var(--type-psychic);
+    }
+    .fighting{
+        background-color: var(--type-fighting);
+    }
+    .poison{
+        background-color: var(--type-poison);
+    }
+    .ground{
+        background-color: var(--type-ground);
+    }
+    .flying{
+        background-color: var(--type-flying);
+    }
+    .dragon{
+        background-color: var(--type-dragon);
+    }
+    .bug{
+        background-color: var(--type-bug);
+    }
+    .rock{
+        background-color: var(--type-rock);
+    }
+    .ghost{
+        background-color: var(--type-ghost);
+    }
+    .ice{
+        background-color: var(--type-ice);
+    }
+    .steel{
+        background-color: var(--type-steel);
+    }
+    .dark{
+        background-color: var(--type-dark);
+    }
+
+    .fairy{
+        background-color: var(--type-fairy);
+    }
 }
 
 .pokedex{

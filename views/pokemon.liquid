@@ -8,17 +8,17 @@
 
     <p>Pokedex number {{ pokemon.id }}</p>
 
-    <ul>
+    <ul class="info">
         <li>Height: {{ pokemon.height }} m</li>
         <li>Weight: {{ pokemon.weight }} kg</li>
         <li>Color: {{ pokemon.color }}</li>
     </ul>
 
-    <h3>Type(s):</h3>
+    <h2>Type(s):</h2>
 
-    <ul>
+    <ul class="types">
         {% for type in pokemon.types %}
-            <li>{{ type }}</li>
+            <li class="{{ type | downcase }}">{{ type }}</li>
         {% endfor %}
     </ul>
 </main>
