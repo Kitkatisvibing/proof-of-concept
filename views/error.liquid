@@ -2,7 +2,12 @@
 </header>
 
 <main>
-    <h1>404 - Page Not Found</h1>
+    <h1>404 - Oh no! You're lost!</h1>
+    <p>A wild {{ pokemon.name | capitalize }} blocked your path!</p>
+    
+    <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}" width="300">
+    
+    <p><a href="/">Go back home</a></p>
 </main>
 
 {% render 'partials/foot.liquid' %}

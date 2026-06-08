@@ -36,12 +36,21 @@ const pokemon = getDataJSON.results.map(function(item) {
     })
 })
 
-app.get('/pokemon/:id', async function (request, response) {
+app.get('/pokemon/:id', async function (request, response, next) {
     // Haal het ID uit de URL (bijv. /pokemon/25 -> id is 25)
     const pokemonId = request.params.id
         // Haal de specifieke data op voor deze Pokémon
         const detailData = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
         const speciesData = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`)
+
+try {
+        // Haal de specifieke data op voor deze Pokémon
+        const detailData = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+        const speciesData = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`)
+
+        if (!detailData.ok || !speciesData.ok) {
+            return next()
+        }
 
         const pokemonDetail = await detailData.json()
         const speciesDetail = await speciesData.json()
@@ -56,13 +65,40 @@ app.get('/pokemon/:id', async function (request, response) {
             color: speciesDetail.color.name
         }
 
-        response.render('pokemon.liquid', {
+response.render('pokemon.liquid', {
             pokemon: pokemonInfo
         })
+} 
+
+    catch (error) {
+        // ga naar 404 pagina als er een fout is (bijv. ongeldig ID)
+        console.error("An unexpected error occurred:", error)
+        next()
+    }
 })
 
 app.use(function (request, response) {
-    response.status(404).render('error.liquid', {})
+    // 1. Get a random index based on the total number of Pokémon fetched
+    const totalPokemon = getDataJSON.results.length
+    const randomIndex = Math.floor(Math.random() * totalPokemon)
+    
+    // 2. Get the random Pokémon item
+    const randomPokemon = getDataJSON.results[randomIndex]
+    
+    // 3. Extract the ID from the URL just like you did for the index route
+    const urlParts = randomPokemon.url.split('/')
+    const id = urlParts[urlParts.length - 2]
+    
+    // 4. Construct the data object to pass to the view
+    const errorPokemon = {
+        name: randomPokemon.name,
+        image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+    }
+
+    // 5. Render the error page and pass the random Pokémon data
+    response.status(404).render('error.liquid', { 
+        pokemon: errorPokemon
+    })
 })
 
 // Localhost setup
