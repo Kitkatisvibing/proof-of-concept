@@ -26,6 +26,11 @@ const regions = {
   paldea: { min: 906, max: 1025 }
 };
 
+const pokeball = {
+      name: 'Pokéball',
+      image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png'
+      }
+
 // Hier beginnen de views
 app.get ('/', async function (request, response) {
 
@@ -78,11 +83,12 @@ const typeQuery = (request.query.type || '').toLowerCase().trim();
     searchQuery: searchQuery,
     regionQuery: regionQuery,
     typeQuery: typeQuery,
-    pokeball: {
-      name: 'Pokéball',
-      image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png'
-      }
+    pokeball: pokeball
     })
+})
+
+app.get('/caught', async function (request, response) {
+    response.render('caught.liquid')
 })
 
 app.get('/pokemon/:id', async function (request, response, next) {

@@ -1,58 +1,63 @@
 {% render 'partials/head.liquid' %}
-  <form method="GET" action="/">
-    <select name="region" onchange="this.form.submit()">
-        <option value="">All Regions</option>
-        <option value="kanto" {% if regionQuery == 'kanto' %}selected{% endif %}>Kanto (Gen 1)</option>
-        <option value="johto" {% if regionQuery == 'johto' %}selected{% endif %}>Johto (Gen 2)</option>
-        <option value="hoenn" {% if regionQuery == 'hoenn' %}selected{% endif %}>Hoenn (Gen 3)</option>
-        <option value="sinnoh" {% if regionQuery == 'sinnoh' %}selected{% endif %}>Sinnoh (Gen 4)</option>
-        <option value="unova" {% if regionQuery == 'unova' %}selected{% endif %}>Unova (Gen 5)</option>
-        <option value="kalos" {% if regionQuery == 'kalos' %}selected{% endif %}>Kalos (Gen 6)</option>
-        <option value="alola" {% if regionQuery == 'alola' %}selected{% endif %}>Alola (Gen 7)</option>
-        <option value="galar" {% if regionQuery == 'galar' %}selected{% endif %}>Galar (Gen 8)</option>
-        <option value="hisui" {% if regionQuery == 'hisui' %}selected{% endif %}>Hisui (Gen 8.5)</option>
-        <option value="paldea" {% if regionQuery == 'paldea' %}selected{% endif %}>Paldea (Gen 9)</option>
-      </select>
+        <a href="/caught"><img src="{{ pokeball.image }}" alt="{{ pokeball.name }}"></a>
+	</nav>
 
-      <select name="type" onchange="this.form.submit()">
-        <option value="">All Types</option>
-        <option value="normal" {% if typeQuery == 'normal' %}selected{% endif %}>Normal</option>
-        <option value="fire" {% if typeQuery == 'fire' %}selected{% endif %}>Fire</option>
-        <option value="water" {% if typeQuery == 'water' %}selected{% endif %}>Water</option>
-        <option value="grass" {% if typeQuery == 'grass' %}selected{% endif %}>Grass</option>
-        <option value="electric" {% if typeQuery == 'electric' %}selected{% endif %}>Electric</option>
-        <option value="ice" {% if typeQuery == 'ice' %}selected{% endif %}>Ice</option>
-        <option value="fighting" {% if typeQuery == 'fighting' %}selected{% endif %}>Fighting</option>
-        <option value="poison" {% if typeQuery == 'poison' %}selected{% endif %}>Poison</option>
-        <option value="ground" {% if typeQuery == 'ground' %}selected{% endif %}>Ground</option>
-        <option value="flying" {% if typeQuery == 'flying' %}selected{% endif %}>Flying</option>
-        <option value="psychic" {% if typeQuery == 'psychic' %}selected{% endif %}>Psychic</option>
-        <option value="bug" {% if typeQuery == 'bug' %}selected{% endif %}>Bug</option>
-        <option value="rock" {% if typeQuery == 'rock' %}selected{% endif %}>Rock</option>
-        <option value="ghost" {% if typeQuery == 'ghost' %}selected{% endif %}>Ghost</option>
-        <option value="dragon" {% if typeQuery == 'dragon' %}selected{% endif %}>Dragon</option>
-        <option value="dark" {% if typeQuery == 'dark' %}selected{% endif %}>Dark</option>
-        <option value="steel" {% if typeQuery == 'steel' %}selected{% endif %}>Steel</option>
-        <option value="fairy" {% if typeQuery == 'fairy' %}selected{% endif %}>Fairy</option>
-      </select>
+  <div class="break"></div>
 
-      <input 
-        type="search" 
-        placeholder="Search Pokémon" 
-        name="search" 
-        value="{{ searchQuery }}">
-  </form>
+  	<form method="GET" action="/">
+    	<select name="region" onchange="this.form.submit()">
+			<option value="">All Regions</option>
+			<option value="kanto" {% if regionQuery == 'kanto' %}selected{% endif %}>Kanto (Gen 1)</option>
+			<option value="johto" {% if regionQuery == 'johto' %}selected{% endif %}>Johto (Gen 2)</option>
+			<option value="hoenn" {% if regionQuery == 'hoenn' %}selected{% endif %}>Hoenn (Gen 3)</option>
+			<option value="sinnoh" {% if regionQuery == 'sinnoh' %}selected{% endif %}>Sinnoh (Gen 4)</option>
+			<option value="unova" {% if regionQuery == 'unova' %}selected{% endif %}>Unova (Gen 5)</option>
+			<option value="kalos" {% if regionQuery == 'kalos' %}selected{% endif %}>Kalos (Gen 6)</option>
+			<option value="alola" {% if regionQuery == 'alola' %}selected{% endif %}>Alola (Gen 7)</option>
+			<option value="galar" {% if regionQuery == 'galar' %}selected{% endif %}>Galar (Gen 8)</option>
+			<option value="hisui" {% if regionQuery == 'hisui' %}selected{% endif %}>Hisui (Gen 8.5)</option>
+			<option value="paldea" {% if regionQuery == 'paldea' %}selected{% endif %}>Paldea (Gen 9)</option>
+      	</select>
+
+    	<select name="type" onchange="this.form.submit()">
+			<option value="">All Types</option>
+			<option value="normal" {% if typeQuery == 'normal' %}selected{% endif %}>Normal</option>
+			<option value="fire" {% if typeQuery == 'fire' %}selected{% endif %}>Fire</option>
+			<option value="water" {% if typeQuery == 'water' %}selected{% endif %}>Water</option>
+			<option value="grass" {% if typeQuery == 'grass' %}selected{% endif %}>Grass</option>
+			<option value="electric" {% if typeQuery == 'electric' %}selected{% endif %}>Electric</option>
+			<option value="ice" {% if typeQuery == 'ice' %}selected{% endif %}>Ice</option>
+			<option value="fighting" {% if typeQuery == 'fighting' %}selected{% endif %}>Fighting</option>
+			<option value="poison" {% if typeQuery == 'poison' %}selected{% endif %}>Poison</option>
+			<option value="ground" {% if typeQuery == 'ground' %}selected{% endif %}>Ground</option>
+			<option value="flying" {% if typeQuery == 'flying' %}selected{% endif %}>Flying</option>
+			<option value="psychic" {% if typeQuery == 'psychic' %}selected{% endif %}>Psychic</option>
+			<option value="bug" {% if typeQuery == 'bug' %}selected{% endif %}>Bug</option>
+			<option value="rock" {% if typeQuery == 'rock' %}selected{% endif %}>Rock</option>
+			<option value="ghost" {% if typeQuery == 'ghost' %}selected{% endif %}>Ghost</option>
+			<option value="dragon" {% if typeQuery == 'dragon' %}selected{% endif %}>Dragon</option>
+			<option value="dark" {% if typeQuery == 'dark' %}selected{% endif %}>Dark</option>
+			<option value="steel" {% if typeQuery == 'steel' %}selected{% endif %}>Steel</option>
+			<option value="fairy" {% if typeQuery == 'fairy' %}selected{% endif %}>Fairy</option>
+		</select>
+
+		<input 
+			type="search" 
+			placeholder="Search Pokémon" 
+			name="search" 
+			value="{{ searchQuery }}">
+	</form>
 </header>
 <main>
-  <ul class="pokedex">
-    {% for item in pokemon %}
-      <li class="pokecard">
-        <img class="pokesprite" src="{{ item.image }}" alt="{{ item.name }}" width="100" height="100" loading="lazy">
-        <img class="pokeball" src="{{ pokeball.image }}" alt="{{ pokeball.name }}" width="30" height="30" loading="lazy">
-        <a href="/pokemon/{{ item.id }}"><p>{{ item.name | capitalize }}</p></a>
-      </li>
-    {% endfor %}
-  </ul>
+	<ul class="pokedex">
+		{% for item in pokemon %}
+		<li class="pokecard">
+			<img class="pokesprite" src="{{ item.image }}" alt="{{ item.name }}" width="100" height="100" loading="lazy">
+			<img class="pokeball" src="{{ pokeball.image }}" alt="{{ pokeball.name }}" width="30" height="30" loading="lazy">
+			<a href="/pokemon/{{ item.id }}"><p>{{ item.name | capitalize }}</p></a>
+		</li>
+		{% endfor %}
+	</ul>
 </main>
 
 {% render 'partials/foot.liquid' %}
