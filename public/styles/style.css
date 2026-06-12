@@ -49,6 +49,21 @@
     --title-font: 'PocketMonk', 'Times New Roman', serif;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+    @view-transition {
+        navigation: auto;
+    }
+
+    ::view-transition-group(*) {
+        animation-duration: 0.4s;
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    ::view-transition-old(root), ::view-transition-new(root) {
+        animation-duration: 0.3s;
+    }
+}
+
 body{
     text-align: center;
     margin: 0;
