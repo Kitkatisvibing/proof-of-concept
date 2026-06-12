@@ -72,7 +72,11 @@
 				<a class="pokecard" href="/pokemon/{{ item.id }}">
 					<li>
 						<img class="pokesprite" src="{{ item.image }}" alt="{{ item.name }}" width="100" height="100" loading="lazy">
-						<img class="pokeball" src="{{ pokeball.image }}" alt="{{ pokeball.name }}" width="30" height="30" loading="lazy">
+					<form class="favorite-form" action="/" method="post">
+						<button type="submit" class="catch">
+						<img class="pokeball" src="{{ pokeball.image }}" alt="{{ pokeball.name }}" width="30" height="30">
+						</button>
+					</form>
 						<p>{{ item.name | capitalize }}</p>
 					</li>
 				</a>
