@@ -49,6 +49,20 @@
 	</form>
 </header>
 <main>
+	{% if regionQuery == '' %}
+		<h2>Pokemon from All Regions</h2>
+	{% else %}
+		<h2>Pokemon from {{ regionQuery | capitalize }} region</h2>
+	{% endif %}
+
+	{% if typeQuery == '' %}
+		<h3>All Types</h3>
+	{% elsif typeQuery != '' and regionQuery != '' %}
+		<h3>{{ typeQuery | capitalize }} Pokémon from {{ regionQuery | capitalize }}</h3>
+	{% else %}
+		<h3>{{ typeQuery | capitalize }} Pokémon</h3>
+	{% endif %}
+
 	<ul class="pokedex">
 		{% for item in pokemon %}
 		<li class="pokecard">
