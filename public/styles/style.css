@@ -11,6 +11,7 @@
 
 :root{
     --pokedex-color:#E60033;
+    --pokemon-color:#FFE361;
 
 /*pokemon colors*/
     --pokemon-red:#E60033;
@@ -240,16 +241,23 @@ header{
     padding: 0;
     .pokecard{
         width: 30%;
+        text-decoration: none;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
+        border: 1px solid;
+        color: black;
+        border-radius: 5px;
+    }
+    .pokecard:active, .pokecard:focus{
+        color: var(--pokedex-color);
     }
     .pokecard:hover{
         transform: translateY(-5px);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        color: var(--pokemon-color);
     }
     li{
         display: inline-block;
         text-align: center;
-        border: 1px solid;
         img{
             width: 100px;
             height: 100px;
