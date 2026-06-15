@@ -48,6 +48,7 @@
 			value="{{ searchQuery }}">
 	</form>
 </header>
+
 <main>
 	{% if regionQuery == '' and typeQuery == '' %}
 		<h2>All Pokémon</h2>
@@ -72,11 +73,11 @@
 				<a class="pokecard" href="/pokemon/{{ item.id }}">
 					<li>
 						<img class="pokesprite" src="{{ item.image }}" alt="Illustration of a {{ item.name }}" width="100" height="100" loading="lazy">
-					<form class="catch-form" action="/{{ item.id }}/catch" method="post">
-						<button type="submit" class="catch">
-						<img class="pokeball" src="{{ pokeball.image }}" alt="Catch this pokemon" width="30" height="30">
-						</button>
-					</form>
+						<form class="pokecatch" action="/{{ item.id }}/catch" method="post">
+							<button type="submit" class="catch">
+							<img class="pokeball" src="{{ pokeball.image }}" alt="Catch this pokemon" width="30" height="30">
+							</button>
+						</form>
 						<p>{{ item.name | capitalize }}</p>
 					</li>
 				</a>

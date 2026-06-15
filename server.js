@@ -87,6 +87,19 @@ const typeQuery = (request.query.type || '').toLowerCase().trim();
     })
 })
 
+app.post('/:id/catch', async function (request, response){
+  const postResponse = await fetch("https://fdnd-agency.directus.app/items/pokemon_catches", {
+    method: "POST",
+    headers: { 
+      'Content-Type': 'application/json;charset=UTF-8'
+    },
+    body: JSON.stringify({
+        pokemon_id: request.params.id,
+        user_id: '1'
+    })
+  })
+})
+
 app.get('/caught', async function (request, response) {
     response.render('caught.liquid')
 })
