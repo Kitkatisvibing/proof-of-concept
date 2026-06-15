@@ -101,7 +101,30 @@ app.post('/:id/catch', async function (request, response){
 })
 
 app.get('/caught', async function (request, response) {
-    response.render('caught.liquid')
+    const caughtPokemonData = await fetch('https://fdnd-agency.directus.app/items/pokemon_catches/?filter[user_id]_eq=1')
+    const caughtPokemonJson = await caughtPokemonData.json()
+    const caughtItems = caughtPokemonJson.data
+
+    const caughtIds = new Set(caughtItems.map(item => item.pokemon_id))
+
+    const pokemon = getDataJSON.results
+        .map(function(item) {
+            const urlParts = item.url.split('/')
+            const id = parseInt(urlParts[urlParts.length - 2], 10);
+            return {
+                name: item.name,
+                id: id,
+                image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+            }
+        })
+        // ONLY keep the pokemon if their ID exists in our caughtIds Set
+        .filter(p => caughtIds.has(p.id))
+
+
+    response.render('caught.liquid', {
+        pokemon: pokemon,
+        pokeball: pokeball
+    })
 })
 
 app.get('/pokemon/:id', async function (request, response, next) {
