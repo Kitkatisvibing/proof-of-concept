@@ -87,18 +87,46 @@ const typeQuery = (request.query.type || '').toLowerCase().trim();
     })
 })
 
-app.post('/:id/catch', async function (request, response){
-  const postResponse = await fetch("https://fdnd-agency.directus.app/items/pokemon_catches", {
-    method: "POST",
-    headers: { 
-      'Content-Type': 'application/json;charset=UTF-8'
-    },
-    body: JSON.stringify({
-        pokemon_id: request.params.id,
-        user_id: '1'
-    })
-  })
-})
+app.post('/:id/catch', async function (request, response) {
+  const pokemonId = request.params.id;
+  const userId = '1';
+
+  try {
+    const checkResponse = await fetch(
+      `https://fdnd-agency.directus.app/items/pokemon_catches?filter[pokemon_id][_eq]=${pokemonId}&filter[user_id][_eq]=${userId}`
+    );
+    const checkData = await checkResponse.json();
+    const existingCatch = checkData.data && checkData.data[0];
+
+    if (existingCatch) {
+      await fetch(`https://fdnd-agency.directus.app/items/pokemon_catches/${existingCatch.id}`, {
+        method: "DELETE"
+      });
+      
+      // Redirect with a released status flag
+      return response.redirect('/?status=released');
+
+    } else {
+      await fetch("https://fdnd-agency.directus.app/items/pokemon_catches", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        body: JSON.stringify({
+          pokemon_id: pokemonId,
+          user_id: userId
+        })
+      });
+
+      // Redirect with a caught status flag
+      return response.redirect('/?status=caught');
+    }
+
+  } catch (error) {
+    console.error("Error in catch/release route:", error);
+    return response.redirect('/?status=error');
+  }
+});
 
 app.get('/caught', async function (request, response) {
     const caughtPokemonData = await fetch('https://fdnd-agency.directus.app/items/pokemon_catches/?filter[user_id]_eq=1')

@@ -87,3 +87,22 @@
 </main>
 
 {% render 'partials/foot.liquid' %}
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const status = urlParams.get('status');
+
+  if (status) {
+    if (status === 'caught') {
+      alert('Gotcha! Pokémon was caught successfully!');
+    } else if (status === 'released') {
+      alert('Bye-bye! Pokémon was released back into the wild.');
+    } else if (status === 'error') {
+      alert('Oops! Something went wrong.');
+    }
+
+    //Clean up the URL bar so refreshing the page doesn't show the alert again
+    const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
+  }
+</script>
