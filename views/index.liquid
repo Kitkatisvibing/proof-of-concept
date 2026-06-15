@@ -71,10 +71,10 @@
 			{% for item in pokemon %}
 				<a class="pokecard" href="/pokemon/{{ item.id }}">
 					<li>
-						<img class="pokesprite" src="{{ item.image }}" alt="{{ item.name }}" width="100" height="100" loading="lazy">
-					<form class="favorite-form" action="/" method="post">
+						<img class="pokesprite" src="{{ item.image }}" alt="Illustration of a {{ item.name }}" width="100" height="100" loading="lazy">
+					<form class="catch-form" action="/{{ item.id }}/catch" method="post">
 						<button type="submit" class="catch">
-						<img class="pokeball" src="{{ pokeball.image }}" alt="{{ pokeball.name }}" width="30" height="30">
+						<img class="pokeball" src="{{ pokeball.image }}" alt="View your caught pokemon" width="30" height="30">
 						</button>
 					</form>
 						<p>{{ item.name | capitalize }}</p>
