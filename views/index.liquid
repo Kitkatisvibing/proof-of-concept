@@ -1,5 +1,5 @@
 {% render 'partials/head.liquid' %}
-        <a href="/caught"><img src="{{ pokeball.image }}" alt="View your caught pokemon"></a>
+        <a href="/caught"><img src="{{ pokeball.image }}" alt="">Your Pokémon</a>
 	</nav>
 
   <div class="break"></div>
@@ -50,19 +50,24 @@
 </header>
 
 <main>
-	{% if regionQuery == '' and typeQuery == '' %}
-		<h2>All Pokémon</h2>
-	{% elsif regionQuery != '' and typeQuery == '' %}
-		<h2>All Pokémon from {{ regionQuery | capitalize }} region</h2>
-	{% elsif regionQuery == '' and typeQuery != '' %}
-		<h2>All {{ typeQuery | capitalize }} Pokémon</h2>
-	{% elsif regionQuery != '' and typeQuery != '' %}
-		<h2>{{ typeQuery | capitalize }} Pokémon from {{ regionQuery | capitalize }} region
-		</h2>
-	{% endif %}
-
-	{% if searchQuery != '' %}
-		<h3>Search Results for "{{ searchQuery }}"</h3>
+	{% if regionQuery == '' and typeQuery == '' and searchQuery == '' %}
+		<h1>All Pokémon</h1>
+	{% elsif regionQuery != '' and typeQuery == '' and searchQuery == '' %}
+		<h1>All Pokémon from {{ regionQuery | capitalize }} region</h1>
+	{% elsif regionQuery == '' and typeQuery != '' and searchQuery == '' %}
+		<h1>All {{ typeQuery | capitalize }} Pokémon</h1>
+	{% elsif regionQuery != '' and typeQuery != '' and searchQuery == '' %}
+		<h1>{{ typeQuery | capitalize }} Pokémon from {{ regionQuery | capitalize }} region
+		</h1>
+	{% elsif regionQuery == '' and typeQuery == '' and searchQuery != '' %}
+		<h1>All Pokémon with "{{ searchQuery }}"</h1>
+	{% elsif regionQuery != '' and typeQuery == '' and searchQuery != '' %}
+		<h1>All Pokémon from {{ regionQuery | capitalize }} region with "{{ searchQuery }}"</h1>
+	{% elsif regionQuery == '' and typeQuery != '' and searchQuery != '' %}
+		<h1>All {{ typeQuery | capitalize }} Pokémon with "{{ searchQuery }}"</h1>
+	{% elsif regionQuery != '' and typeQuery != '' and searchQuery != '' %}
+		<h1>{{ typeQuery | capitalize }} Pokémon from {{ regionQuery | capitalize }} region with "{{ searchQuery }}"
+		</h1>
 	{% endif %}
 
 	<ul class="pokedex">
